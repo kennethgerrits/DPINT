@@ -75,6 +75,8 @@ namespace DPINT_Wk2_Decorator.ViewModel
         {
             var options = OptionList.Where(o => o.Selected).Select(o => o.Name);
             _fighter = _fighterFactory.CreateFighter(Lives, AttackValue, DefenseValue, options);
+            AttackValue = _fighter.AttackValue;
+            DefenseValue = _fighter.DefenseValue;
             _canCreateFighter = false;
             CreateFighterCommand.RaiseCanExecuteChanged();
         }
@@ -82,14 +84,16 @@ namespace DPINT_Wk2_Decorator.ViewModel
         public void Attack()
         {
             var attack = _fighter.Attack();
-            LogMessages(attack.Messages);           
+            AttackValue = _fighter.AttackValue;
+            DefenseValue = _fighter.DefenseValue;
+            LogMessages(attack.Messages);
 
-            if(EnemyFighterViewModel != null)
+            if (EnemyFighterViewModel != null)
             {
                 EnemyFighterViewModel.Defend(attack);
             }
         }
-        
+
         private void Defend(Attack attack)
         {
             attack.Messages.Clear();

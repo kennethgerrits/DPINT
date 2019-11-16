@@ -86,6 +86,7 @@
     <Compile Include="Model\PoisonFighterDecorator.cs" />
     <Compile Include="Model\ShieldFighterDecorator.cs" />
     <Compile Include="Model\ShotgunFighterDecorator.cs" />
+    <Compile Include="Model\StrengthenFighterDecorator.cs" />
     <Compile Include="ViewModel\FighterOptionsViewModel.cs" />
     <Compile Include="ViewModel\FighterViewModel.cs" />
     <Compile Include="ListBoxExtenders.cs" />

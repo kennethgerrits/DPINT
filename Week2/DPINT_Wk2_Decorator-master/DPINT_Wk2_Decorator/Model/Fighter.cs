@@ -12,14 +12,6 @@ namespace DPINT_Wk2_Decorator.Model
         public int AttackValue { get; set; }
         public int DefenseValue { get; set; }
 
-        public bool DoubleHanded { get; set; }
-        public int MinionLives { get; set; }
-        public int MinionAttackValue { get; set; }
-        public int PoisonStrength { get; set; }
-        public int ShieldDefends { get; set; }
-        public bool UseShotgun { get; set; }
-        public int ShotgunRoundsFired { get; set; }
-
         public Fighter(int lives, int attack, int defense)
         {
             this.Lives = lives;
