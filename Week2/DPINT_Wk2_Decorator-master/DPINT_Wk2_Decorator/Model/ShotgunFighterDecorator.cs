@@ -30,10 +30,7 @@ namespace DPINT_Wk2_Decorator.Model
                 attack.Messages.Add("Shotgun reloading, no extra damage.");
                 _shotgunRoundsFired = 0;
             }
-
             return attack;
         }
-
-
     }
 }
