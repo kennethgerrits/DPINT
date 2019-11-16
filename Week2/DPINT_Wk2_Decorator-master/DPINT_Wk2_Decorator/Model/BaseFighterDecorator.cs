@@ -10,7 +10,7 @@ namespace DPINT_Wk2_Decorator.Model
     {
         private IFighter _fighterImplementation;
 
-        public BaseFighterDecorator(IFighter iFighter)
+        protected BaseFighterDecorator(IFighter iFighter)
         {
             _fighterImplementation = iFighter;
         }

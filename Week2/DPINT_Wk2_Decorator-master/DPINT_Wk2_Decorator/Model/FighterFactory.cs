@@ -32,27 +32,26 @@ namespace DPINT_Wk2_Decorator.Model
 
         public IFighter CreateFighter(int lives, int attack, int defense, IEnumerable<string> options)
         {
-            Fighter fighter = new Fighter(lives, attack, defense);
+            IFighter fighter = new Fighter(lives, attack, defense);
 
             foreach (var option in options)
             {
                 switch (option)
                 {
                     case DOUBLE_HANDED:
-                        fighter.DoubleHanded = true;
+                        fighter = new DoubleHandedFighterDecorator(fighter);
                         break;
                     case MINION:
-                        fighter.MinionLives = fighter.Lives / 2;
-                        fighter.MinionAttackValue = fighter.AttackValue / 2;
+                        fighter = new MinionFighterDecorator(fighter, fighter.AttackValue/2, fighter.Lives/2);
                         break;
                     case POISON:
-                        fighter.PoisonStrength = 10;
+                        fighter = new PoisonFighterDecorator(fighter, 10);
                         break;
                     case SHIELD:
-                        fighter.ShieldDefends = 3;
+                        fighter = new ShieldFighterDecorator(fighter, 3);
                         break;
                     case SHOTGUN:
-                        fighter.UseShotgun = true;
+                        fighter = new ShotgunFighterDecorator(fighter, true);
                         break;
                 }
             }

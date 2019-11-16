@@ -8,8 +8,21 @@ namespace DPINT_Wk2_Decorator.Model
 {
     class ShieldFighterDecorator : BaseFighterDecorator
     {
-        public ShieldFighterDecorator(IFighter iFighter) : base(iFighter)
+        private int ShieldDefends;
+        public ShieldFighterDecorator(IFighter iFighter, int shieldDefends) : base(iFighter)
         {
+            ShieldDefends = shieldDefends;
+        }
+
+        public override void Defend(Attack attack)
+        {
+            if (ShieldDefends > 0)
+            {
+                attack.Messages.Add("Shield protected, attack value = 0");
+                attack.Value = 0;
+                ShieldDefends--;
+            }
+            base.Defend(attack);
         }
     }
 }
