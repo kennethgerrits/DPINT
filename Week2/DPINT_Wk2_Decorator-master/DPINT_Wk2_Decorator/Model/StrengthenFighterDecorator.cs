@@ -23,5 +23,6 @@ namespace DPINT_Wk2_Decorator.Model
             attack.Value = (int)Math.Round(attackDouble, MidpointRounding.AwayFromZero); 
             return attack;
         }
+
     }
 }
