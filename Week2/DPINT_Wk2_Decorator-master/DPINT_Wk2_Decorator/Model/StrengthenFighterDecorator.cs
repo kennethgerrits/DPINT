@@ -12,10 +12,16 @@ namespace DPINT_Wk2_Decorator.Model
 
         public StrengthenFighterDecorator(IFighter iFighter) : base(iFighter)
         {
-            double attackDouble = base.AttackValue * ((100.00 + PERCENTAGE_BUFF) / 100.00);
             double defendDouble = base.DefenseValue * ((100.00 + PERCENTAGE_BUFF) / 100.00);
-            base.AttackValue = (int)Math.Round(attackDouble, MidpointRounding.AwayFromZero);
             base.DefenseValue = (int)Math.Round(defendDouble, MidpointRounding.AwayFromZero);
+        }
+
+        public override Attack Attack()
+        {
+            var attack = base.Attack();
+            double attackDouble = base.AttackValue * ((100.00 + PERCENTAGE_BUFF) / 100.00);
+            attack.Value = (int)Math.Round(attackDouble, MidpointRounding.AwayFromZero); 
+            return attack;
         }
     }
 }
