@@ -9,7 +9,7 @@ namespace DPINT_Wk2_Decorator.Model
     class StrengthenFighterDecorator : BaseFighterDecorator
     {
         private const int PERCENTAGE_BUFF = 10;
-        //test
+
         public StrengthenFighterDecorator(IFighter iFighter) : base(iFighter)
         {
             double attackDouble = base.AttackValue * ((100.00 + PERCENTAGE_BUFF) / 100.00);

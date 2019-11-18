@@ -49,7 +49,7 @@ namespace DPINT_Wk2_Decorator.Model
                         fighter = new ShieldFighterDecorator(fighter, 3);
                         break;
                     case SHOTGUN:
-                        fighter = new ShotgunFighterDecorator(fighter, true);
+                        fighter = new ShotgunFighterDecorator(fighter);
                         break;
                     case STRENGTHEN:
                         fighter = new StrengthenFighterDecorator(fighter);

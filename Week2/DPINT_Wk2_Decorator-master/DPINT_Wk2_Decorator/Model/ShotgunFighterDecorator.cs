@@ -9,10 +9,8 @@ namespace DPINT_Wk2_Decorator.Model
     class ShotgunFighterDecorator : BaseFighterDecorator
     {
         private int _shotgunRoundsFired = 0;
-        private bool UseShotgun;
-        public ShotgunFighterDecorator(IFighter iFighter, bool usesShotgun) : base(iFighter)
+        public ShotgunFighterDecorator(IFighter iFighter) : base(iFighter)
         {
-            UseShotgun = usesShotgun;
         }
 
         public override Attack Attack()
