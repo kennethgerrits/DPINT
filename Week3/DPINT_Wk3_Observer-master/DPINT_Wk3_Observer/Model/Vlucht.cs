@@ -15,24 +15,23 @@ namespace DPINT_Wk3_Observer.Model
             VertrokkenVanuit = vertrokkenVanuit;
             AantalKoffers = aantalKoffers;
 
-            _waitingTimer = new Timer {Interval = 1000};
+            _waitingTimer = new Timer { Interval = 1000 };
             _waitingTimer.Tick += (o, e) => TimeWaiting = TimeWaiting.Add(new TimeSpan(0, 0, 1));
             _waitingTimer.Start();
-
         }
 
         private string _vertrokkenVanuit;
         public string VertrokkenVanuit
         {
             get => _vertrokkenVanuit;
-            set { _vertrokkenVanuit = value; Notify(this); } 
+            set { _vertrokkenVanuit = value; Notify(this); }
         }
 
         private int _aantalKoffers;
         public int AantalKoffers
         {
             get => _aantalKoffers;
-            set { _aantalKoffers = value; Notify(this); } 
+            set { _aantalKoffers = value; Notify(this); }
         }
 
         private readonly Timer _waitingTimer;
@@ -41,17 +40,12 @@ namespace DPINT_Wk3_Observer.Model
         public TimeSpan TimeWaiting
         {
             get => _timeWaiting;
-            set
-            {
-                _timeWaiting = value;
-                Notify(this);
-            }
+            set { _timeWaiting = value; Notify(this); }
         }
         public void StopWaiting()
         {
             _waitingTimer.Stop();
             _waitingTimer.Dispose();
         }
-
     }
 }

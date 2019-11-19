@@ -35,14 +35,6 @@ namespace DPINT_Wk3_Observer.ViewModel
         {
             band.Subscribe(this);
             OnNext(band);
-            //Update(band);
-        }
-
-        public void Update(Baggageband value)
-        {
-            VluchtVertrokkenVanuit = value.VluchtVertrokkenVanuit;
-            AantalKoffers = value.AantalKoffers;
-            Naam = value.Naam;
         }
 
         public void OnNext(Baggageband value)

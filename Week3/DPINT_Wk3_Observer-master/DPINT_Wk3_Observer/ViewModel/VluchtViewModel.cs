@@ -24,7 +24,6 @@ namespace DPINT_Wk3_Observer.ViewModel
             set { _aantalKoffers = value; RaisePropertyChanged("AantalKoffers"); }
         }
 
-
         private TimeSpan _timeWaiting;
         public TimeSpan TimeWaiting
         {

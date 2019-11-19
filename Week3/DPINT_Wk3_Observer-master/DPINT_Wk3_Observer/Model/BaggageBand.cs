@@ -14,7 +14,6 @@ namespace DPINT_Wk3_Observer.Model
         private int _aantalKoffersPerMinuut;
         public int AantalKoffers { get; set; }
         public string VluchtVertrokkenVanuit { get; set; }
-
         private Timer _huidigeVluchtTimer;
 
         public Baggageband(string naam, int aantalKoffersPerMinuut)
@@ -33,13 +32,11 @@ namespace DPINT_Wk3_Observer.Model
                 _huidigeVluchtTimer.Stop();
             }
 
-            _huidigeVluchtTimer = new Timer();
-            _huidigeVluchtTimer.Interval = (int)((60.0 / _aantalKoffersPerMinuut) * 1000);
+            _huidigeVluchtTimer = new Timer {Interval = (int) ((60.0 / _aantalKoffersPerMinuut) * 1000)};
             _huidigeVluchtTimer.Tick += KofferVanBandGehaald;
 
             _huidigeVluchtTimer.Start();
 
-            // TODO: We moeten het laten weten dat we een update hebben!
             Notify(this);
         }
 
@@ -53,7 +50,6 @@ namespace DPINT_Wk3_Observer.Model
                 _huidigeVluchtTimer.Stop();
             }
             Notify(this);
-            // TODO: We moeten het laten weten dat we een update hebben!
         }
     }
 }
