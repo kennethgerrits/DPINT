@@ -95,7 +95,6 @@ namespace DPINT_Wk3_Observer.ViewModel
             _aankomsthal.NieuweInkomendeVlucht("Cape Town", 7);
             _aankomsthal.NieuweInkomendeVlucht("Tokyo", 3);
         }
-        
 
         private void AddNieuweVlucht()
         {

@@ -35,7 +35,6 @@ namespace DPINT_Wk3_Observer.Model
                 WachtendeVluchten.Add(newVlucht);
             else
                 legeBand.HandelNieuweVluchtAf(newVlucht);
-
         }
 
         public void WachtendeVluchtenNaarBand()
@@ -47,6 +46,7 @@ namespace DPINT_Wk3_Observer.Model
                 return;
 
             WachtendeVluchten.RemoveAt(0);
+            volgendeVlucht.StopWaiting();
             legeBand.HandelNieuweVluchtAf(volgendeVlucht);
         }
 
