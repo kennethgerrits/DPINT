@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DPINT_Wk3_Observer.Model
 {
-    public class Aankomsthal : IObserver<Baggageband>
+    public class Aankomsthal : IObserver<Baggageband>, IObserver<Vlucht>
     {
         public ObservableCollection<Vlucht> WachtendeVluchten { get; private set; }
         public ObservableCollection<Baggageband> Baggagebanden { get; private set; }
@@ -30,6 +30,8 @@ namespace DPINT_Wk3_Observer.Model
         {
             Vlucht newVlucht = new Vlucht(vertrokkenVanuit, aantalKoffers);
             Baggageband legeBand = Baggagebanden.FirstOrDefault(b => b.AantalKoffers == 0);
+
+            newVlucht.Subscribe(this);
 
             if (legeBand == null)
                 WachtendeVluchten.Add(newVlucht);
@@ -55,7 +57,15 @@ namespace DPINT_Wk3_Observer.Model
             WachtendeVluchtenNaarBand();
         }
 
-        //gebruiken we niet
+        //verwijderen vlucht als hij te lang wacht
+        public void OnNext(Vlucht value)
+        {
+            if (value.TimeWaiting.Seconds > 5)
+            {
+                this.WachtendeVluchten.Remove(value);
+            }
+        }
+
         public void OnError(Exception error)
         {
             throw new NotImplementedException();
