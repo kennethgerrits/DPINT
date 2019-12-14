@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Input;
+using KoffieMachineDomain.Enumerations;
 
 namespace Dpint_wk456_KoffieMachine.ViewModel
 {

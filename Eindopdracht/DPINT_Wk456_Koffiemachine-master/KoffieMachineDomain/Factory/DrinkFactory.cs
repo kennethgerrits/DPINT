@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoffieMachineDomain
+namespace KoffieMachineDomain.Factory
 {
-    public enum Strength
+    public class DrinkFactory
     {
-        Normal = 0, Weak, Strong
+
     }
 }

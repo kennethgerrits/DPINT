@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoffieMachineDomain
+namespace KoffieMachineDomain.Enumerations
 {
-    public enum Amount
+    public enum Strength
     {
-        Normal = 0, Few, Extra
+        Normal = 0, Weak, Strong
     }
 }

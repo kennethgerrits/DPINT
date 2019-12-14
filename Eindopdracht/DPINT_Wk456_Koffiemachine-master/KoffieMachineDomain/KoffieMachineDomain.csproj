@@ -38,17 +38,29 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TeaAndChocoLibrary">
+      <HintPath>..\TeaAndChocoLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Amount.cs" />
     <Compile Include="CafeAuLait.cs" />
     <Compile Include="Capuccino.cs" />
     <Compile Include="Coffee.cs" />
+    <Compile Include="Decorators\CondimentDecorator.cs" />
+    <Compile Include="Decorators\SugarBeverageDecorator.cs" />
     <Compile Include="Drink.cs" />
+    <Compile Include="Enumerations\Amount.cs" />
+    <Compile Include="Enumerations\Strength.cs" />
     <Compile Include="Espresso.cs" />
+    <Compile Include="Factory\DrinkFactory.cs" />
+    <Compile Include="Interfaces\IBeverage.cs" />
+    <Compile Include="Models\Beverage.cs" />
+    <Compile Include="Models\Coffee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strength.cs" />
     <Compile Include="WienerMelange.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PaymentMethods\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
