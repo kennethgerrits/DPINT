@@ -1,0 +1,22 @@
+﻿<Window x:Class="DPINT_Wk1_Strategies.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DPINT_Wk1_Strategies"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="152.063" Width="455.34">
+    <Window.DataContext>
+        <local:ValueConverterViewModel />
+    </Window.DataContext>
+    <Grid Margin="0,0,-5.2,9">
+        <Label x:Name="lbl_From" Content="From" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cBox_From" ItemsSource="{Binding ConverterNames}" SelectedValue="{Binding FromConverterName}" HorizontalAlignment="Left" Margin="64,13,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_From" HorizontalAlignment="Left" Height="28" Margin="22,40,0,0" TextWrapping="Wrap" Text="{Binding FromText }" VerticalAlignment="Top" Width="162" TextAlignment="Center" FontSize="21.333"/>
+        <Label x:Name="lbl_To" Content="To" HorizontalAlignment="Left" Margin="268,10,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cBox_To" ItemsSource="{Binding ConverterNames}" SelectedValue="{Binding ToConverterName}" HorizontalAlignment="Left" Margin="310,13,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="txt_To" HorizontalAlignment="Left" Height="28" Margin="268,40,0,0" TextWrapping="Wrap" Text="{Binding ToText}" VerticalAlignment="Top" Width="162" TextAlignment="Center" FontSize="21.333"/>
+        <Button x:Name="button" Content="&#x2794;" Command="{ Binding ConvertCommand }" HorizontalAlignment="Left" Margin="193,40,0,0" VerticalAlignment="Top" Width="75" Height="28" FontSize="21.333"/>
+
+    </Grid>
+</Window>
