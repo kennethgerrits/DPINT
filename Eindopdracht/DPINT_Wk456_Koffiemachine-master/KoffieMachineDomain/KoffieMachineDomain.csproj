@@ -43,21 +43,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CafeAuLait.cs" />
-    <Compile Include="Capuccino.cs" />
-    <Compile Include="Coffee.cs" />
     <Compile Include="Decorators\CondimentDecorator.cs" />
+    <Compile Include="Decorators\MilkBeverageDecorator.cs" />
     <Compile Include="Decorators\SugarBeverageDecorator.cs" />
-    <Compile Include="Drink.cs" />
     <Compile Include="Enumerations\Amount.cs" />
     <Compile Include="Enumerations\Strength.cs" />
-    <Compile Include="Espresso.cs" />
     <Compile Include="Factory\DrinkFactory.cs" />
     <Compile Include="Interfaces\IBeverage.cs" />
     <Compile Include="Models\Beverage.cs" />
     <Compile Include="Models\Coffee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WienerMelange.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PaymentMethods\" />
