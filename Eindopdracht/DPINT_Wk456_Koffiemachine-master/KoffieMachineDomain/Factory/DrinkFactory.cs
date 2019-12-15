@@ -18,26 +18,60 @@ namespace KoffieMachineDomain.Factory
 
         public DrinkFactory()
         {
-            var jsonString = File.ReadAllText("config.json");
+            var jsonString = File.ReadAllText("./config/config.json");
             config = JsonConvert.DeserializeObject<ConfigurationManager>(jsonString);
 
         }
 
         private IBeverage GetBaseBeverage(string name, Strength strength)
         {
-            switch (name)
+            IBeverage beverage = null;
+            if (name.Contains("tea"))
             {
-                case "Coffee":
-                    return new Coffee("Coffee", strength, Amount.Normal);
-                case "Wiener Melange":
-                    return new MilkBeverageDecorator(new Coffee("Wiener Melange", Strength.Weak, Amount.Extra));
-                case "Cafe au Lait":
-                    return new MilkBeverageDecorator(new Coffee("Cafe au Lait", Strength.Normal, Amount.Extra));
-                case "Espresso":
-                    return new Coffee("Espresso", Strength.Strong, Amount.Few);
-                default:
-                    return null;
+                return null; // TODO: add tea
+            } else if (name.Contains("choco"))
+            {
+                return null; // TODO: add choco
+            } else
+            {
+                beverage = new Coffee(name, strength, Amount.Normal);
             }
+
+            return decorateBaseBeverage(beverage, name);
+        }
+
+        private IBeverage decorateBaseBeverage(IBeverage beverage, String name)
+        {
+            // find beverage in config
+            if (config.Coffees.TryGetValue(name, out String[] recepeStrings))
+            {
+                foreach (string recepeString in recepeStrings)
+                {
+                    switch (recepeString)
+                    {
+                        case "milk":
+                            beverage = new MilkBeverageDecorator(beverage);
+                            continue;
+                        case "sugar":
+                            beverage = new SugarBeverageDecorator(beverage);
+                            continue;
+                        case "amaretto":
+                            beverage = new AmarettoDecorator(beverage);
+                            continue;
+                        case "whippedcream":
+                            beverage = new WhippedCreamDecorator(beverage);
+                            continue;
+                        case "whisky":
+                            beverage = new WhiskyDecorator(beverage);
+                            continue;
+                        default:
+                            continue;
+                    }
+                }
+            }
+
+            return beverage;
+
         }
 
         public IBeverage GetCoffeeWithSugar(string name, Strength strength, Amount sugarAmount)

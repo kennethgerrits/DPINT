@@ -46,9 +46,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorators\AmarettoDecorator.cs" />
     <Compile Include="Decorators\CondimentDecorator.cs" />
     <Compile Include="Decorators\MilkBeverageDecorator.cs" />
     <Compile Include="Decorators\SugarBeverageDecorator.cs" />
+    <Compile Include="Decorators\WhippedCreamDecorator.cs" />
+    <Compile Include="Decorators\WhiskyDecorator.cs" />
     <Compile Include="Enumerations\Amount.cs" />
     <Compile Include="Enumerations\Strength.cs" />
     <Compile Include="Factory\ConfigurationManager.cs" />
@@ -71,7 +74,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Factory\config.json">
+    <Content Include="config\config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
@@ -82,5 +85,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

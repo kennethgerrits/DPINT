@@ -1,0 +1,11 @@
+{
+  "Coffees": {
+    "Cappuccino": [ "sugar" ],
+    "Wiener Melange": [ "milk", "sugar" ],
+    "Cafe au Lait": [ "milk", "sugar" ],
+    "Espresso": [ "milk", "sugar" ],
+    "Irish Coffee": [ "whisky", "sugar", "whippedcream" ],
+    "Spanish Coffee": [ "cointreau", "cognac", "sugar", "whippedcream" ],
+    "Italian Coffee": [ "amaretto", "sugar", "whippedcream"]
+  }
+}
