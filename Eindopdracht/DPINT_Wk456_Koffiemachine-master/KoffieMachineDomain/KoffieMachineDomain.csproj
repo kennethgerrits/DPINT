@@ -62,7 +62,6 @@
     <Compile Include="Interfaces\ICardPaymentProcessor.cs" />
     <Compile Include="Interfaces\ICashPaymentProcessor.cs" />
     <Compile Include="Interfaces\IPaymentProcessor.cs" />
-    <Compile Include="Models\Beverage.cs" />
     <Compile Include="Models\Coffee.cs" />
     <Compile Include="PaymentMethods\CardPaymentProcessor.cs" />
     <Compile Include="PaymentMethods\CashPaymentProcessor.cs" />

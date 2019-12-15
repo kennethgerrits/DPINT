@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using KoffieMachineDomain.Interfaces;
 
 namespace KoffieMachineDomain.Decorators
@@ -24,7 +20,7 @@ namespace KoffieMachineDomain.Decorators
         public override List<string> GetBeverageMakingLog()
         {
             var log = base.GetBeverageMakingLog();
-            log.Add($"Adding whisky.");
+            log.Add("Adding whisky.");
             return log;
         }
     }

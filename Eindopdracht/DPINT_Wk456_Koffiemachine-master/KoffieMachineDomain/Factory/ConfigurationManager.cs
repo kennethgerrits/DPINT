@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace KoffieMachineDomain.Factory
 {
     public class ConfigurationManager
     {
-        public Dictionary<String, String[]> Coffees { get; set; }
+        public Dictionary<string, string[]> Coffees { get; set; }
     }
 }

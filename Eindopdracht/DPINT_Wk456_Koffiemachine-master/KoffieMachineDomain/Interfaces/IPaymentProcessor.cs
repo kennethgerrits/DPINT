@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace KoffieMachineDomain.Interfaces
 {
@@ -11,7 +6,7 @@ namespace KoffieMachineDomain.Interfaces
     {
         ObservableCollection<string> AccountNames { get; }
         bool Pay(double amount, string accountName);
-        double GetAccountBalance(string AccountName);
+        double GetAccountBalance(string accountName);
         bool PayInCash(double amount);
         void InsertCoin(double amount);
     }

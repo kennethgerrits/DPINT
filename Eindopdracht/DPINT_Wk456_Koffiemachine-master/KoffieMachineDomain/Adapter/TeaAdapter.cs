@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using KoffieMachineDomain.Interfaces;
 using TeaAndChocoLibrary;
 
@@ -10,23 +6,23 @@ namespace KoffieMachineDomain.Adapter
 {
     public class TeaAdapter : Tea, IBeverage
     {
-        private List<string> _productionLog;
+        private readonly List<string> _productionLog;
 
         public TeaAdapter(TeaBlend blend)
         {
-            _productionLog = new List<string>()
+            _productionLog = new List<string>
             {
                 "Making tea",
                 "Adding hot water"
             };
 
-            base.Blend = blend;
+            Blend = blend;
             _productionLog.Add($"Adding {Blend.Name} into the hot water");
         }
 
         public string GetName()
         {
-            return "Tea with " + base.Blend.Name;
+            return "Tea with " + Blend.Name;
         }
 
         public double GetPrice()

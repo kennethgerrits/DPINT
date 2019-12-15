@@ -1,24 +1,18 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using KoffieMachineDomain;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
 using System.Windows.Input;
 using KoffieMachineDomain.Enumerations;
 using KoffieMachineDomain.Factory;
 using KoffieMachineDomain.Interfaces;
-using KoffieMachineDomain.Models;
 using KoffieMachineDomain.PaymentMethods;
-using TeaAndChocoLibrary;
 
 namespace Dpint_wk456_KoffieMachine.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public PaymentLog Loggingservice { get; private set; }
+        public PaymentLog Loggingservice { get; }
         private IPaymentProcessor PaymentService { get; }
         private DrinkFactory DrinksFactory { get; }
         public MainViewModel()
@@ -28,7 +22,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             _milkAmount = Amount.Normal;
 
             Loggingservice = new PaymentLog();
-            Loggingservice.Add(new string[]
+            Loggingservice.Add(new[]
             {
                 "Starting up...",
                 "Done, what would you like to drink?"
@@ -134,7 +128,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             _selectedDrink = DrinksFactory.GetCoffee(drinkName, CoffeeStrength, SelectedTeaBlend);
 
             CheckDrink(drinkName);
-            StartDrinkPayment("");
+            StartDrinkPayment();
         });
 
         public ICommand DrinkWithSugarCommand => new RelayCommand<string>((drinkName) =>
@@ -143,7 +137,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
 
             _selectedDrink = DrinksFactory.GetCoffeeWithSugar(drinkName, CoffeeStrength, SugarAmount);
             CheckDrink(drinkName);
-            StartDrinkPayment("sugar");
+            StartDrinkPayment();
         });
 
         public ICommand DrinkWithMilkCommand => new RelayCommand<string>((drinkName) =>
@@ -151,7 +145,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             _selectedDrink = null;
             _selectedDrink = DrinksFactory.GetCoffeeWithMilk(drinkName, CoffeeStrength, MilkAmount);
             CheckDrink(drinkName);
-            StartDrinkPayment("milk");
+            StartDrinkPayment();
         });
 
         public ICommand DrinkWithSugarAndMilkCommand => new RelayCommand<string>((drinkName) =>
@@ -159,9 +153,9 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             _selectedDrink = null;
             _selectedDrink = DrinksFactory.GetCoffeeWithMilkAndSugar(drinkName, CoffeeStrength, SugarAmount, MilkAmount);
             CheckDrink(drinkName);
-            StartDrinkPayment("milk and sugar");
+            StartDrinkPayment();
         });
-        private void StartDrinkPayment(string DrinkWithWhat)
+        private void StartDrinkPayment()
         {
             RemainingPriceToPay = 0;
             if (_selectedDrink == null) return;

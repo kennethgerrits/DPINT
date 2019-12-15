@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace KoffieMachineDomain.PaymentMethods
 {
     public class PaymentLog
     {
-        public ObservableCollection<string> Log { get; private set; }
+        public PaymentLog()
+        {
+            Log = new ObservableCollection<string>();
+        }
+
+        public ObservableCollection<string> Log { get; }
 
         public void Add(string logLine)
         {
@@ -18,15 +18,7 @@ namespace KoffieMachineDomain.PaymentMethods
 
         public void Add(string[] logLines)
         {
-            foreach (string line in logLines)
-            {
-                Add(line);
-            }
-        }
-
-        public PaymentLog()
-        {
-            Log = new ObservableCollection<string>();
+            foreach (var line in logLines) Add(line);
         }
     }
 }
