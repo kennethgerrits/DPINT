@@ -61,9 +61,9 @@ namespace KoffieMachineDomain.Factory
             return decorateBaseBeverage(beverage, name);
         }
 
-        private IBeverage decorateBaseBeverage(IBeverage beverage, String name)
+        private IBeverage decorateBaseBeverage(IBeverage beverage, string name)
         {
-            if (config.Coffees.TryGetValue(name, out String[] recepeStrings))
+            if (config.Coffees.TryGetValue(name, out string[] recepeStrings))
             {
                 foreach (string recepeString in recepeStrings)
                 {
