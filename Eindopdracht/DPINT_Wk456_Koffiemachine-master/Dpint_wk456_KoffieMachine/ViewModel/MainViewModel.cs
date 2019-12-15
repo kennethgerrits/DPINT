@@ -12,6 +12,7 @@ using KoffieMachineDomain.Factory;
 using KoffieMachineDomain.Interfaces;
 using KoffieMachineDomain.Models;
 using KoffieMachineDomain.PaymentMethods;
+using TeaAndChocoLibrary;
 
 namespace Dpint_wk456_KoffieMachine.ViewModel
 {
@@ -40,21 +41,15 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
                 );
 
             SelectedPaymentCardUsername = PaymentService.AccountNames[0];
-          //  SelectedTeaBlend = TeaBlends.First();
             DrinksFactory = new DrinkFactory();
         }
 
         #region Drink properties to bind to
         private IBeverage _selectedDrink;
-        public string SelectedDrinkName
-        {
-            get { return _selectedDrink?.GetName(); }
-        }
+        public string SelectedDrinkName => _selectedDrink?.GetName();
 
-        public double? SelectedDrinkPrice
-        {
-            get { return _selectedDrink?.GetPrice(); }
-        }
+        public double? SelectedDrinkPrice => _selectedDrink?.GetPrice();
+
         #endregion Drink properties to bind to
 
         #region Payment
@@ -68,7 +63,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
                 }
             }
             RaisePropertyChanged(() => PaymentCardRemainingAmount);
-            
+
         });
 
         public ICommand PayByCoinCommand => new RelayCommand<double>(coinValue =>
@@ -92,7 +87,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         private string _selectedPaymentCardUsername;
         public string SelectedPaymentCardUsername
         {
-            get { return _selectedPaymentCardUsername; }
+            get => _selectedPaymentCardUsername;
             set
             {
                 _selectedPaymentCardUsername = value;
@@ -104,7 +99,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         private double _remainingPriceToPay;
         public double RemainingPriceToPay
         {
-            get { return _remainingPriceToPay; }
+            get => _remainingPriceToPay;
             set { _remainingPriceToPay = value; RaisePropertyChanged(() => RemainingPriceToPay); }
         }
         #endregion Payment
@@ -113,36 +108,31 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         private Strength _coffeeStrength;
         public Strength CoffeeStrength
         {
-            get { return _coffeeStrength; }
+            get => _coffeeStrength;
             set { _coffeeStrength = value; RaisePropertyChanged(() => CoffeeStrength); }
         }
 
         private Amount _sugarAmount;
         public Amount SugarAmount
         {
-            get { return _sugarAmount; }
+            get => _sugarAmount;
             set { _sugarAmount = value; RaisePropertyChanged(() => SugarAmount); }
         }
 
         private Amount _milkAmount;
         public Amount MilkAmount
         {
-            get { return _milkAmount; }
+            get => _milkAmount;
             set { _milkAmount = value; RaisePropertyChanged(() => MilkAmount); }
         }
-        //public IEnumerable<string> TeaBlends => TeaAndChocoFactory.TeaBlendOptions;
+        public IEnumerable<string> TeaBlends => DrinksFactory.TeaBlendOptions;
         public string SelectedTeaBlend { get; set; }
         public ICommand DrinkCommand => new RelayCommand<string>((drinkName) =>
         {
             _selectedDrink = null;
-/*            if (TeaAndChocoFactory.GetDrinkAvailability(drinkName))
-            {
-                _selectedDrink = TeaAndChocoFactory.GetDrink(drinkName, false, SelectedTeaBlend);
-            }*/
-           // else
-         //   {
-                _selectedDrink = DrinksFactory.GetCoffee(drinkName, CoffeeStrength);
-         //   }
+
+            _selectedDrink = DrinksFactory.GetCoffee(drinkName, CoffeeStrength, SelectedTeaBlend);
+
             CheckDrink(drinkName);
             StartDrinkPayment("");
         });
@@ -150,14 +140,8 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         public ICommand DrinkWithSugarCommand => new RelayCommand<string>((drinkName) =>
         {
             _selectedDrink = null;
-/*            if (TeaAndChocoFactory.GetDrinkAvailability(drinkName))
-            {
-                _selectedDrink = TeaAndChocoFactory.GetDrink(drinkName, true, SelectedTeaBlend);
-            }
-            else
-            {*/
-                _selectedDrink = DrinksFactory.GetCoffeeWithSugar(drinkName, CoffeeStrength, SugarAmount);
-    //        }
+
+            _selectedDrink = DrinksFactory.GetCoffeeWithSugar(drinkName, CoffeeStrength, SugarAmount);
             CheckDrink(drinkName);
             StartDrinkPayment("sugar");
         });
@@ -181,9 +165,8 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         {
             RemainingPriceToPay = 0;
             if (_selectedDrink == null) return;
-            var postfix = DrinkWithWhat == "" ? " with " + DrinkWithWhat : "";
             RemainingPriceToPay = _selectedDrink.GetPrice();
-            Loggingservice.Add($"Selected {_selectedDrink.GetName()}{postfix}, price: {RemainingPriceToPay}");
+            Loggingservice.Add($"Selected {_selectedDrink.GetName()}, price: {RemainingPriceToPay}");
             RaisePropertyChanged(() => RemainingPriceToPay);
             RaisePropertyChanged(() => SelectedDrinkName);
             RaisePropertyChanged(() => SelectedDrinkPrice);
@@ -195,7 +178,6 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
                 Loggingservice.Add($"Could not make {drinkName}, recipe not found.");
             }
         }
-
         #endregion Coffee buttons
     }
 }

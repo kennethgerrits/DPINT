@@ -10,27 +10,39 @@ using KoffieMachineDomain.Enumerations;
 using KoffieMachineDomain.Interfaces;
 using KoffieMachineDomain.Models;
 using Newtonsoft.Json;
+using TeaAndChocoLibrary;
+using System.Drawing;
 
 namespace KoffieMachineDomain.Factory
 {
     public class DrinkFactory
     {
+        private string _blendString;
         private ConfigurationManager config;
+        private TeaBlendRepository teaBlendRepository;
+        public IEnumerable<string> TeaBlendOptions;
 
         public DrinkFactory()
         {
             var jsonString = File.ReadAllText("./config/config.json");
             config = JsonConvert.DeserializeObject<ConfigurationManager>(jsonString);
-
+            teaBlendRepository = new TeaBlendRepository();
+            TeaBlendOptions = teaBlendRepository.BlendNames;
         }
-        
+
+        private TeaBlend getTeaBlend(String name)
+        {
+            return teaBlendRepository.GetTeaBlend(name);
+        }
+
         private IBeverage GetBaseBeverage(string name, Strength strength)
         {
             IBeverage beverage = null;
             if (name.Contains("Tea"))
             {
-                return null; // TODO: add tea
-            } else if (name.Contains("Choco"))
+                beverage = new TeaAdapter(getTeaBlend(_blendString));
+            }
+            else if (name.Contains("Choco"))
             {
                 if (name.Contains("Deluxe"))
                 {
@@ -40,7 +52,8 @@ namespace KoffieMachineDomain.Factory
                 {
                     beverage = new HotChocoladeAdapter(false);
                 }
-            } else
+            }
+            else
             {
                 beverage = new Coffee(name, strength, Amount.Normal);
             }
@@ -50,7 +63,6 @@ namespace KoffieMachineDomain.Factory
 
         private IBeverage decorateBaseBeverage(IBeverage beverage, String name)
         {
-            // find beverage in config
             if (config.Coffees.TryGetValue(name, out String[] recepeStrings))
             {
                 foreach (string recepeString in recepeStrings)
@@ -61,7 +73,7 @@ namespace KoffieMachineDomain.Factory
                             beverage = new MilkBeverageDecorator(beverage);
                             continue;
                         case "sugar":
-                            beverage = new SugarBeverageDecorator(beverage){SugarAmount = Amount.Normal};
+                            beverage = new SugarBeverageDecorator(beverage) { SugarAmount = Amount.Normal };
                             continue;
                         case "amaretto":
                             beverage = new AmarettoDecorator(beverage);
@@ -79,7 +91,6 @@ namespace KoffieMachineDomain.Factory
             }
             return beverage;
         }
-
         public IBeverage GetCoffeeWithSugar(string name, Strength strength, Amount sugarAmount)
         {
             var coffee = GetBaseBeverage(name, strength);
@@ -108,10 +119,10 @@ namespace KoffieMachineDomain.Factory
             }
             return new MilkBeverageDecorator(coffee) { MilkAmount = milkAmount };
         }
-        public IBeverage GetCoffee(string name, Strength strength)
+        public IBeverage GetCoffee(string name, Strength strength, string blendString)
         {
+            _blendString = blendString;
             return GetBaseBeverage(name, strength);
         }
-
     }
 }

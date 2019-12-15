@@ -12,25 +12,21 @@ namespace KoffieMachineDomain.Adapter
     {
         private List<string> _productionLog;
 
-        public TeaAdapter(TeaBlend blend, bool hasSugar)
+        public TeaAdapter(TeaBlend blend)
         {
             _productionLog = new List<string>()
             {
                 "Making tea",
                 "Adding hot water"
             };
-            if (hasSugar)
-            {
-                _productionLog.Add("Adding sugar");
-                AddSugar();
-            }
+
             base.Blend = blend;
-            _productionLog.Add($"Adding {blend.Name} into the hot water");
+            _productionLog.Add($"Adding {Blend.Name} into the hot water");
         }
 
         public string GetName()
         {
-            return "Tea with " + base.Blend;
+            return "Tea with " + base.Blend.Name;
         }
 
         public double GetPrice()
