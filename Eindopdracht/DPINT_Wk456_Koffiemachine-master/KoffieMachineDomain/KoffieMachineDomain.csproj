@@ -46,6 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapter\HotChocoladeAdapter.cs" />
+    <Compile Include="Adapter\TeaAdapter.cs" />
     <Compile Include="Decorators\AmarettoDecorator.cs" />
     <Compile Include="Decorators\CondimentDecorator.cs" />
     <Compile Include="Decorators\MilkBeverageDecorator.cs" />

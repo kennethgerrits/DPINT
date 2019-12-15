@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KoffieMachineDomain.Adapter;
 using KoffieMachineDomain.Decorators;
 using KoffieMachineDomain.Enumerations;
 using KoffieMachineDomain.Interfaces;
@@ -22,16 +23,23 @@ namespace KoffieMachineDomain.Factory
             config = JsonConvert.DeserializeObject<ConfigurationManager>(jsonString);
 
         }
-
+        
         private IBeverage GetBaseBeverage(string name, Strength strength)
         {
             IBeverage beverage = null;
-            if (name.Contains("tea"))
+            if (name.Contains("Tea"))
             {
                 return null; // TODO: add tea
-            } else if (name.Contains("choco"))
+            } else if (name.Contains("Choco"))
             {
-                return null; // TODO: add choco
+                if (name.Contains("Deluxe"))
+                {
+                    beverage = new HotChocoladeAdapter(true);
+                }
+                else
+                {
+                    beverage = new HotChocoladeAdapter(false);
+                }
             } else
             {
                 beverage = new Coffee(name, strength, Amount.Normal);
@@ -69,9 +77,7 @@ namespace KoffieMachineDomain.Factory
                     }
                 }
             }
-
             return beverage;
-
         }
 
         public IBeverage GetCoffeeWithSugar(string name, Strength strength, Amount sugarAmount)
