@@ -50,12 +50,17 @@
     <Compile Include="Enumerations\Strength.cs" />
     <Compile Include="Factory\DrinkFactory.cs" />
     <Compile Include="Interfaces\IBeverage.cs" />
+    <Compile Include="Interfaces\ICardPaymentProcessor.cs" />
+    <Compile Include="Interfaces\ICashPaymentProcessor.cs" />
+    <Compile Include="Interfaces\IPaymentProcessor.cs" />
     <Compile Include="Models\Beverage.cs" />
     <Compile Include="Models\Coffee.cs" />
+    <Compile Include="PaymentMethods\CardPaymentProcessor.cs" />
+    <Compile Include="PaymentMethods\CashPaymentProcessor.cs" />
+    <Compile Include="PaymentMethods\PaymentLog.cs" />
+    <Compile Include="PaymentMethods\PaymentProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PaymentMethods\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

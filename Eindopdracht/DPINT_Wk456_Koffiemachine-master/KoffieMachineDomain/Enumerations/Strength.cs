@@ -8,6 +8,6 @@ namespace KoffieMachineDomain.Enumerations
 {
     public enum Strength
     {
-        Normal = 0, Weak, Strong
+        Normal = 1, Weak, Strong
     }
 }

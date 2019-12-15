@@ -40,7 +40,7 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Column="1" BorderThickness="1" Grid.Row="0" BorderBrush="Black"/>
         <Border Grid.Column="2" BorderThickness="1" Grid.Row="0" BorderBrush="Black"/>
-        <ListBox Grid.Column="0" ItemsSource="{Binding LogText}" Background="Black" Foreground="GreenYellow" Padding="5"
+        <ListBox Grid.Column="0" ItemsSource="{Binding Loggingservice.Log}" Background="Black" Foreground="GreenYellow" Padding="5"
                   helpers:SelectorExtenders.IsAutoscroll="True"/>
         <StackPanel Grid.Column="1" Orientation="Vertical" Name="SelectionPanel" Margin="5">
             <Grid Name="StrengthsPanel">

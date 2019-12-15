@@ -30,8 +30,8 @@ namespace KoffieMachineDomain.Models
             var log = new List<string>
             {
                 $"Setting coffee strength to {CoffeeStrength}.",
-                $"Filling mug up to 1/{CoffeeAmount} with coffee...",
-                $"Finished making {Name}"
+                $"Filling mug up to 1/{(int) CoffeeAmount} with coffee...",
+                $"Finished filling the cup with {Name}"
             };
 
             return log;
