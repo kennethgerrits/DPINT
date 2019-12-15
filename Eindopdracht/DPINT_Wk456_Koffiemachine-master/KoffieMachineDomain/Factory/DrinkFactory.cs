@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,12 +8,22 @@ using KoffieMachineDomain.Decorators;
 using KoffieMachineDomain.Enumerations;
 using KoffieMachineDomain.Interfaces;
 using KoffieMachineDomain.Models;
+using Newtonsoft.Json;
 
 namespace KoffieMachineDomain.Factory
 {
-    public abstract class DrinkFactory
+    public class DrinkFactory
     {
-        private static IBeverage GetBaseBeverage(string name, Strength strength)
+        private ConfigurationManager config;
+
+        public DrinkFactory()
+        {
+            var jsonString = File.ReadAllText("config.json");
+            config = JsonConvert.DeserializeObject<ConfigurationManager>(jsonString);
+
+        }
+
+        private IBeverage GetBaseBeverage(string name, Strength strength)
         {
             switch (name)
             {
@@ -29,7 +40,7 @@ namespace KoffieMachineDomain.Factory
             }
         }
 
-        public static IBeverage GetCoffeeWithSugar(string name, Strength strength, Amount sugarAmount)
+        public IBeverage GetCoffeeWithSugar(string name, Strength strength, Amount sugarAmount)
         {
             var coffee = GetBaseBeverage(name, strength);
             if (coffee == null)
@@ -39,7 +50,7 @@ namespace KoffieMachineDomain.Factory
             return new SugarBeverageDecorator(coffee) { SugarAmount = sugarAmount };
         }
 
-        public static IBeverage GetCoffeeWithMilkAndSugar(string name, Strength strength, Amount sugarAmount, Amount milkAmount)
+        public IBeverage GetCoffeeWithMilkAndSugar(string name, Strength strength, Amount sugarAmount, Amount milkAmount)
         {
             var coffee = GetBaseBeverage(name, strength);
             if (coffee == null)
@@ -48,7 +59,7 @@ namespace KoffieMachineDomain.Factory
             }
             return new MilkBeverageDecorator(new SugarBeverageDecorator(coffee) { SugarAmount = sugarAmount }) { MilkAmount = milkAmount };
         }
-        public static IBeverage GetCoffeeWithMilk(string name, Strength strength, Amount milkAmount)
+        public IBeverage GetCoffeeWithMilk(string name, Strength strength, Amount milkAmount)
         {
             var coffee = GetBaseBeverage(name, strength);
             if (coffee == null)
@@ -57,7 +68,7 @@ namespace KoffieMachineDomain.Factory
             }
             return new MilkBeverageDecorator(coffee) { MilkAmount = milkAmount };
         }
-        public static IBeverage GetCoffee(string name, Strength strength)
+        public IBeverage GetCoffee(string name, Strength strength)
         {
             return GetBaseBeverage(name, strength);
         }

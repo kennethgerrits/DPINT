@@ -1,0 +1,8 @@
+{
+"Coffees": {
+    "irisch Coffee" : [ "alcohol:whiskey"],
+},
+specials: {
+	ginger beer: [ "alcohol:whiskey"],
+}
+}

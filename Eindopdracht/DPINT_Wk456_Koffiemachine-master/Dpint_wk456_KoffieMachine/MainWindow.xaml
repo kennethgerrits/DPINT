@@ -115,6 +115,9 @@
                 <Button Command="{Binding DrinkCommand}" CommandParameter="Café au Lait" Style="{StaticResource DrinkButton}">
                     <TextBlock>Café au Lait</TextBlock>
                 </Button>
+                <Button Command="{Binding DrinkCommand}" CommandParameter="Irish Coffee" Style="{StaticResource DrinkButton}">
+                    <TextBlock>Irish Coffee</TextBlock>
+                </Button>
             </StackPanel>
             <Separator />
             <Label Content="Chocolate" FontWeight="Bold"/>

@@ -19,6 +19,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
     {
         public PaymentLog Loggingservice { get; private set; }
         private IPaymentProcessor PaymentService { get; }
+        private DrinkFactory DrinksFactory { get; }
         public MainViewModel()
         {
             _coffeeStrength = Strength.Normal;
@@ -40,6 +41,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
 
             SelectedPaymentCardUsername = PaymentService.AccountNames[0];
           //  SelectedTeaBlend = TeaBlends.First();
+            DrinksFactory = new DrinkFactory();
         }
 
         #region Drink properties to bind to
@@ -139,7 +141,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             }*/
            // else
          //   {
-                _selectedDrink = DrinkFactory.GetCoffee(drinkName, CoffeeStrength);
+                _selectedDrink = DrinksFactory.GetCoffee(drinkName, CoffeeStrength);
          //   }
             CheckDrink(drinkName);
             StartDrinkPayment("");
@@ -154,7 +156,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             }
             else
             {*/
-                _selectedDrink = DrinkFactory.GetCoffeeWithSugar(drinkName, CoffeeStrength, SugarAmount);
+                _selectedDrink = DrinksFactory.GetCoffeeWithSugar(drinkName, CoffeeStrength, SugarAmount);
     //        }
             CheckDrink(drinkName);
             StartDrinkPayment("sugar");
@@ -163,7 +165,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         public ICommand DrinkWithMilkCommand => new RelayCommand<string>((drinkName) =>
         {
             _selectedDrink = null;
-            _selectedDrink = DrinkFactory.GetCoffeeWithMilk(drinkName, CoffeeStrength, MilkAmount);
+            _selectedDrink = DrinksFactory.GetCoffeeWithMilk(drinkName, CoffeeStrength, MilkAmount);
             CheckDrink(drinkName);
             StartDrinkPayment("milk");
         });
@@ -171,7 +173,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         public ICommand DrinkWithSugarAndMilkCommand => new RelayCommand<string>((drinkName) =>
         {
             _selectedDrink = null;
-            _selectedDrink = DrinkFactory.GetCoffeeWithMilkAndSugar(drinkName, CoffeeStrength, SugarAmount, MilkAmount);
+            _selectedDrink = DrinksFactory.GetCoffeeWithMilkAndSugar(drinkName, CoffeeStrength, SugarAmount, MilkAmount);
             CheckDrink(drinkName);
             StartDrinkPayment("milk and sugar");
         });
