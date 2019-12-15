@@ -53,7 +53,7 @@ namespace KoffieMachineDomain.Factory
                             beverage = new MilkBeverageDecorator(beverage);
                             continue;
                         case "sugar":
-                            beverage = new SugarBeverageDecorator(beverage);
+                            beverage = new SugarBeverageDecorator(beverage){SugarAmount = Amount.Normal};
                             continue;
                         case "amaretto":
                             beverage = new AmarettoDecorator(beverage);

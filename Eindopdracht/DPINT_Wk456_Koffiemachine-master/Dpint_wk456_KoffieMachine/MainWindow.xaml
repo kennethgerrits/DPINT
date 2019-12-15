@@ -8,7 +8,7 @@
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:helpers="clr-namespace:Dpint_wk456_KoffieMachine.Helpers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="620" Width="900"
+        Title="MainWindow" Height="620" Width="1300"
         DataContext="{Binding Main, Source={StaticResource Locator }}">
     <Window.Resources>
         <helpers:EnumToBooleanConverter x:Key="EnumToBool"/>
@@ -34,7 +34,7 @@
     </Window.Resources>
     <Grid Name="MainPanel">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="3*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -109,14 +109,20 @@
                 <Button Command="{Binding DrinkWithSugarCommand}" CommandParameter="Capuccino" Style="{StaticResource DrinkButton}">
                     <TextBlock>Capuccino + sugar</TextBlock>
                 </Button>
-                <Button Command="{Binding DrinkCommand}" CommandParameter="Wiener Melange" Style="{StaticResource DrinkButton}">
+                <Button Command="{Binding DrinkWithSugarAndMilkCommand}" CommandParameter="Wiener Melange" Style="{StaticResource DrinkButton}">
                     <TextBlock>Wiener Melange</TextBlock>
                 </Button>
-                <Button Command="{Binding DrinkCommand}" CommandParameter="Café au Lait" Style="{StaticResource DrinkButton}">
+                <Button Command="{Binding DrinkWithSugarAndMilkCommand}" CommandParameter="Café au Lait" Style="{StaticResource DrinkButton}">
                     <TextBlock>Café au Lait</TextBlock>
                 </Button>
-                <Button Command="{Binding DrinkCommand}" CommandParameter="Irish Coffee" Style="{StaticResource DrinkButton}">
+                <Button Command="{Binding DrinkWithSugarCommand}" CommandParameter="Irish Coffee" Style="{StaticResource DrinkButton}">
                     <TextBlock>Irish Coffee</TextBlock>
+                </Button>
+                <Button Command="{Binding DrinkWithSugarCommand}" CommandParameter="Spanish Coffee" Style="{StaticResource DrinkButton}">
+                    <TextBlock>Spanish Coffee</TextBlock>
+                </Button>
+                <Button Command="{Binding DrinkWithSugarCommand}" CommandParameter="Italian Coffee" Style="{StaticResource DrinkButton}">
+                    <TextBlock>Italian Coffee</TextBlock>
                 </Button>
             </StackPanel>
             <Separator />
