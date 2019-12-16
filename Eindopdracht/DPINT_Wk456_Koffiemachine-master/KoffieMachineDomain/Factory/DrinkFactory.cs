@@ -103,7 +103,7 @@ namespace KoffieMachineDomain.Factory
             return new MilkBeverageDecorator(coffee) {MilkAmount = milkAmount};
         }
 
-        public IBeverage GetCoffee(string name, Strength strength, string blendString)
+        public IBeverage GetBeverage(string name, Strength strength, string blendString)
         {
             _blendString = blendString;
             return GetBaseBeverage(name, strength);

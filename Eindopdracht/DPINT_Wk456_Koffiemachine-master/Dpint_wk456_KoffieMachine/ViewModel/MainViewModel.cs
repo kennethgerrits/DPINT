@@ -125,7 +125,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         {
             _selectedDrink = null;
 
-            _selectedDrink = DrinksFactory.GetCoffee(drinkName, CoffeeStrength, SelectedTeaBlend);
+            _selectedDrink = DrinksFactory.GetBeverage(drinkName, CoffeeStrength, SelectedTeaBlend);
 
             CheckDrink(drinkName);
             StartDrinkPayment();
